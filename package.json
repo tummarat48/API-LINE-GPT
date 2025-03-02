@@ -1,0 +1,25 @@
+{
+  "name": "line-bot",
+  "version": "1.0.0",
+  "description": "A simple LINE Bot deployed on Railway",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "@line/bot-sdk": "^7.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}
+
