@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "A simple LINE Bot deployed on Railway",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "preinstall": "npm install --production"
   },
   "dependencies": {
     "@line/bot-sdk": "^7.3.0",
@@ -17,9 +19,8 @@
     "nodemon": "^3.0.1"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
-  "author": "Your Name",
+  "author": "tummarat21",
   "license": "MIT"
 }
-
