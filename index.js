@@ -16,23 +16,6 @@ const config = {
 
 const client = new line.Client(config);
 
-// Health Check
-app.get("/", (req, res) => {
-  res.send("LINE Bot is running!");
-});
-
-// Webhook Handler
-app.post("/webhook", line.middleware(config), async (req, res) => {
-  try {
-    const events = req.body.events;
-    await Promise.all(events.map(handleEvent));
-    res.status(200).send("OK");
-  } catch (error) {
-    console.error("Error handling webhook:", error);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
 // ฟังก์ชันจัดการข้อความ
 async function handleEvent(event) {
   console.log("Received event:", event);
@@ -61,7 +44,24 @@ async function handleEvent(event) {
   return client.replyMessage(event.replyToken, { type: "text", text: replyText });
 }
 
+// Webhook Handler
+app.post("/webhook", line.middleware(config), async (req, res) => {
+  try {
+    const events = req.body.events;
+    await Promise.all(events.map(handleEvent));
+    res.status(200).send("OK");
+  } catch (error) {
+    console.error("Error handling webhook:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// Health Check Endpoint
+app.get("/", (req, res) => {
+  res.send("LINE Bot is running!");
+});
+
+// Start Server
 app.listen(port, () => {
   console.log(`✅ Server running on port ${port}`);
 });
-
